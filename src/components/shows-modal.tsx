@@ -247,10 +247,10 @@ const ShowModal = () => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <Link href={handleHref(1)}>
-                    <DropdownMenuItem>vidsrc.me</DropdownMenuItem>
+                    <DropdownMenuItem>streaming 1</DropdownMenuItem>
                   </Link>
                   <Link href={handleHref(2)}>
-                    <DropdownMenuItem>vidsrc.cc</DropdownMenuItem>
+                    <DropdownMenuItem>streaming 2</DropdownMenuItem>
                   </Link>
                 </DropdownMenuContent>
               </DropdownMenu>

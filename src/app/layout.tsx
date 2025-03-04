@@ -115,6 +115,7 @@ export default function RootLayout({
             </>
           )}
         </ThemeProvider>
+        <meta name="monetag" content="d0aa2c5f998da10d062e4508a68a6324" />
       </body>
     </html>
   );
