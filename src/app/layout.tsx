@@ -116,6 +116,11 @@ export default function RootLayout({
           )}
         </ThemeProvider>
         <meta name="monetag" content="d0aa2c5f998da10d062e4508a68a6324" />
+        <script
+          src="https://kulroakonsu.net/88/tag.min.js"
+          data-zone="134578"
+          async
+          data-cfasync="false"></script>
       </body>
     </html>
   );
