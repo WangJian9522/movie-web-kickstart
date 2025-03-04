@@ -120,7 +120,7 @@ export function MainNav({ items }: MainNavProps) {
   return (
     <nav
       className={cn(
-        'relative flex h-12 w-full items-center justify-between bg-gradient-to-b from-secondary/70 from-10% px-[4vw] transition-colors duration-300 md:sticky md:h-16',
+        'relative flex h-24 w-full items-center justify-between bg-gradient-to-b from-secondary/70 from-10% px-[4vw] transition-colors duration-300 md:sticky',
         isScrolled ? 'bg-secondary shadow-md' : 'bg-transparent',
       )}>
       <div className="flex items-center gap-6 md:gap-10">
@@ -220,13 +220,13 @@ export function MainNav({ items }: MainNavProps) {
           onChangeStatusOpen={handleChangeStatusOpen}
           containerClassName={cn(path === '/' ? 'hidden' : 'flex')}
         />
-        <Link
-          rel="noreferrer"
-          target="_blank"
-          href={siteConfig.links.github}
-          className={cn(path === '/' ? 'flex' : 'hidden')}>
-          <Icons.gitHub className="h-5 w-5 hover:bg-transparent" />
-        </Link>
+        {/*<Link*/}
+        {/*  rel="noreferrer"*/}
+        {/*  target="_blank"*/}
+        {/*  href={siteConfig.links.github}*/}
+        {/*  className={cn(path === '/' ? 'flex' : 'hidden')}>*/}
+        {/*  <Icons.gitHub className="h-5 w-5 hover:bg-transparent" />*/}
+        {/*</Link>*/}
         <ThemeToggle />
       </div>
     </nav>

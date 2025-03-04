@@ -4,6 +4,7 @@ import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import { Input, type InputProps } from '@/components/ui/input';
 import { useOnClickOutside } from '@/hooks/use-on-click-outside';
+import { useTheme } from 'next-themes';
 
 interface DebouncedInputProps extends Omit<InputProps, 'onChange'> {
   containerClassName?: string;
@@ -28,7 +29,7 @@ export function DebouncedInput({
   ...props
 }: DebouncedInputProps) {
   const inputRef = React.useRef<HTMLInputElement>(null);
-
+  const { theme } = useTheme();
   // close search input on clicking outside,
   useOnClickOutside(inputRef, () => {
     if (!value) onChangeStatusOpen(false);
@@ -74,11 +75,15 @@ export function DebouncedInput({
         id={id}
         type="text"
         placeholder="Search..."
+        autoComplete="off"
         className={cn(
-          'h-auto rounded-none py-1.5 pl-8 text-sm transition-all duration-300',
+          // 'h-auto rounded-none py-1.5 pl-8 text-sm transition-all duration-300',
+          'h-[46px] border-none pl-[54px] text-sm transition-all duration-300',
           open
-            ? 'w-28 border md:w-40  lg:w-60'
-            : 'w-0 border-none bg-transparent',
+            ? theme === 'dark'
+              ? 'w-60 border border-solid border-[#FFFFFF33] pr-2 md:w-40 lg:w-60'
+              : 'w-60 border border-solid border-[#00000033] pr-2 md:w-40 lg:w-60'
+            : 'w-[54px]',
           className,
         )}
         defaultValue={value}
@@ -91,8 +96,7 @@ export function DebouncedInput({
         aria-label="Search"
         variant="ghost"
         className={cn(
-          'absolute top-1/2 h-auto -translate-y-1/2 rounded-full p-1 hover:bg-transparent',
-          open ? 'left-1' : 'left-[9px]',
+          'absolute left-0 top-1/2 h-[46px] w-[54px] -translate-y-1/2 rounded-full hover:bg-transparent',
         )}
         onClick={() => {
           if (!inputRef.current) {

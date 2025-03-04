@@ -3,6 +3,13 @@
 import { Icons } from '@/components/icons';
 import { Button } from '@/components/ui/button';
 import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+
+import {
   Dialog,
   DialogContent,
   DialogDescription,
@@ -161,7 +168,7 @@ const ShowModal = () => {
     }
   };
 
-  const handleHref = (): string => {
+  const handleHref = (option: number): string => {
     const type = isAnime
       ? 'anime'
       : modalStore.show?.media_type === MediaType.MOVIE
@@ -173,7 +180,7 @@ const ShowModal = () => {
         modalStore.show?.media_type === MediaType.MOVIE ? 'm' : 't';
       id = `${prefix}-${id}`;
     }
-    return `/watch/${type}/${id}`;
+    return `/watch/${type}/${id}?option=${option}`;
   };
 
   return (
@@ -215,19 +222,38 @@ const ShowModal = () => {
           )}
           <div className="absolute bottom-6 z-20 flex w-full items-center justify-between gap-2 px-10">
             <div className="flex items-center gap-2.5">
-              <Link href={handleHref()}>
-                <Button
-                  aria-label={`${isPlaying ? 'Pause' : 'Play'} show`}
-                  className="group h-auto rounded py-1.5">
-                  <>
+              {/*<Link href={handleHref()}>*/}
+              {/*  <Button*/}
+              {/*    aria-label={`${isPlaying ? 'Pause' : 'Play'} show`}*/}
+              {/*    className="group h-auto rounded py-1.5">*/}
+              {/*    <Icons.play*/}
+              {/*      className="mr-1.5 h-6 w-6 fill-current"*/}
+              {/*      aria-hidden="true"*/}
+              {/*    />*/}
+              {/*    Play*/}
+              {/*  </Button>*/}
+              {/*</Link>*/}
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    aria-label={`${isPlaying ? 'Pause' : 'Play'} show`}
+                    className="group h-auto rounded py-1.5">
                     <Icons.play
                       className="mr-1.5 h-6 w-6 fill-current"
                       aria-hidden="true"
                     />
                     Play
-                  </>
-                </Button>
-              </Link>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <Link href={handleHref(1)}>
+                    <DropdownMenuItem>vidsrc.me</DropdownMenuItem>
+                  </Link>
+                  <Link href={handleHref(2)}>
+                    <DropdownMenuItem>vidsrc.cc</DropdownMenuItem>
+                  </Link>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
             <Button
               aria-label={`${isMuted ? 'Unmute' : 'Mute'} video`}

@@ -104,17 +104,40 @@ const Hero = ({ randomShow }: HeroProps) => {
                   {randomShow?.overview ?? '-'}
                 </p>
                 <div className="mt-[1.5vw] flex items-center space-x-2">
-                  <Link prefetch={false} href={handleHref()}>
-                    <Button
-                      aria-label="Play video"
-                      className="h-auto flex-shrink-0 gap-2 rounded-xl">
-                      <Icons.play className="fill-current" aria-hidden="true" />
-                      Play
-                    </Button>
-                  </Link>
+                  {/*<Link prefetch={false} href={handleHref()}>*/}
+                  {/*  <Button*/}
+                  {/*    aria-label="Play video"*/}
+                  {/*    className="h-auto flex-shrink-0 gap-2 rounded-xl">*/}
+                  {/*    <Icons.play className="fill-current" aria-hidden="true" />*/}
+                  {/*    Play*/}
+                  {/*  </Button>*/}
+                  {/*</Link>*/}
+                  {/*<Button*/}
+                  {/*  aria-label="Open show's details modal"*/}
+                  {/*  variant="outline"*/}
+                  {/*  className="h-auto flex-shrink-0 gap-2 rounded-xl"*/}
+                  {/*  onClick={() => {*/}
+                  {/*    const name = getNameFromShow(randomShow);*/}
+                  {/*    const path: string =*/}
+                  {/*      randomShow.media_type === MediaType.TV*/}
+                  {/*        ? 'tv-shows'*/}
+                  {/*        : 'movies';*/}
+                  {/*    window.history.pushState(*/}
+                  {/*      null,*/}
+                  {/*      '',*/}
+                  {/*      `${path}/${getSlug(randomShow.id, name)}`,*/}
+                  {/*    );*/}
+                  {/*    useModalStore.setState({*/}
+                  {/*      show: randomShow,*/}
+                  {/*      open: true,*/}
+                  {/*      play: true,*/}
+                  {/*    });*/}
+                  {/*  }}>*/}
+                  {/*  <Icons.info aria-hidden="true" />*/}
+                  {/*  More Info*/}
+                  {/*</Button>*/}
                   <Button
-                    aria-label="Open show's details modal"
-                    variant="outline"
+                    aria-label="Play video"
                     className="h-auto flex-shrink-0 gap-2 rounded-xl"
                     onClick={() => {
                       const name = getNameFromShow(randomShow);
@@ -133,12 +156,12 @@ const Hero = ({ randomShow }: HeroProps) => {
                         play: true,
                       });
                     }}>
-                    <Icons.info aria-hidden="true" />
-                    More Info
+                    <Icons.play className="fill-current" aria-hidden="true" />
+                    View
                   </Button>
                 </div>
               </div>
-            </div>{' '}
+            </div>
             <div className="opacity-71 absolute inset-0 right-[26.09%] z-[8] bg-gradient-to-r from-secondary to-85%"></div>
             <div className="absolute bottom-[-1px] left-0 right-0 z-[8] h-[14.7vw] bg-gradient-to-b from-background/0 from-30% via-background/30 via-50% to-background to-80%"></div>
           </div>
