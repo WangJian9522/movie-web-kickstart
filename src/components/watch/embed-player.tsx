@@ -6,6 +6,9 @@ import { MediaType, type IEpisode, type ISeason, type Show } from '@/types';
 import MovieService from '@/services/MovieService';
 import { type AxiosResponse } from 'axios';
 import Season from '../season';
+import SiteFooter from '@/components/main/site-footer';
+import SiteHeader from '@/components/main/site-header';
+import GiscusComments from '@/components/watch/giscus';
 
 interface EmbedPlayerProps {
   url: string;
@@ -44,7 +47,7 @@ function EmbedPlayer(props: EmbedPlayerProps) {
 
   const loadingRef = React.useRef<HTMLDivElement>(null);
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
-
+  console.log('movieId', props.movieId);
   const handleChangeEpisode = (episode: IEpisode): void => {
     const { show_id: id, episode_number: eps } = episode;
     handleSetIframeUrl(`https://vidsrc.cc/v2/embed/anime/tmdb${id}/${eps}/sub`);
@@ -95,50 +98,76 @@ function EmbedPlayer(props: EmbedPlayerProps) {
       if (loadingRef.current) loadingRef.current.style.display = 'none';
     }
   };
+
   return (
-    <div
-      style={{
-        width: '100%',
-        height: '100%',
-        position: 'absolute',
-        backgroundColor: '#000',
-      }}>
-      {/*{seasons && (*/}
-      {/*  <Season seasons={seasons ?? []} onChangeEpisode={handleChangeEpisode} />*/}
-      {/*)}*/}
-      {/*<div className="header-top absolute left-0 right-0 top-8 z-[2] flex h-fit w-fit items-center justify-between gap-x-5 px-4 md:h-20 md:gap-x-8 md:px-10 lg:h-24">*/}
-      {/*  <div className="flex flex-1 items-center gap-x-5 md:gap-x-8">*/}
-      {/*    <svg*/}
-      {/*      className="h-10 w-10 flex-shrink-0 cursor-pointer transition hover:scale-125"*/}
-      {/*      stroke="#fff"*/}
-      {/*      fill="#fff"*/}
-      {/*      strokeWidth="0"*/}
-      {/*      viewBox="0 0 16 16"*/}
-      {/*      height="16px"*/}
-      {/*      width="16px"*/}
-      {/*      xmlns="http://www.w3.org/2000/svg"*/}
-      {/*      onClick={() => router.back()}>*/}
-      {/*      <path*/}
-      {/*        fillRule="evenodd"*/}
-      {/*        d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"></path>*/}
-      {/*    </svg>*/}
-      {/*  </div>*/}
-      {/*</div>*/}
-      <div
-        ref={loadingRef}
-        className="absolute z-[1] flex h-full w-full items-center justify-center">
-        <Loading />
-      </div>
-      <iframe
-        width="100%"
-        height="100%"
-        allowFullScreen
-        ref={iframeRef}
-        style={{ opacity: 0 }}
-        referrerPolicy="no-referrer-when-downgrade"
-      />
+    <div className="min-h-screen">
+      <SiteHeader />
+      <main className="flex justify-center">
+        <div className="w-full px-3 sm:px-0 md:w-[70%]">
+          <div className="relative h-0 pb-[56.25%]">
+            <iframe
+              ref={iframeRef}
+              className="absolute left-0 top-0 h-full w-full border-0"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <h2 className="pb-5 pt-10 font-semibold">Comments</h2>
+          <hr />
+          {/*<GiscusComments movieId={props.movieId}/>*/}
+        </div>
+      </main>
+      <SiteFooter />
     </div>
   );
+  // return (
+  //     <div
+  //         style={{
+  //             width: "100%",
+  //             height: "100%",
+  //             position: "absolute",
+  //             backgroundColor: "#000",
+  //         }}
+  //     >
+  //         {seasons && (
+  //             <Season seasons={seasons ?? []} onChangeEpisode={handleChangeEpisode}/>
+  //         )}
+  //         <div
+  //             className="header-top absolute left-0 right-0 top-8 z-[2] flex h-fit w-fit items-center justify-between gap-x-5 px-4 md:h-20 md:gap-x-8 md:px-10 lg:h-24">
+  //             <div className="flex flex-1 items-center gap-x-5 md:gap-x-8">
+  //                 <svg
+  //                     className="h-10 w-10 flex-shrink-0 cursor-pointer transition hover:scale-125"
+  //                     stroke="#fff"
+  //                     fill="#fff"
+  //                     strokeWidth="0"
+  //                     viewBox="0 0 16 16"
+  //                     height="16px"
+  //                     width="16px"
+  //                     xmlns="http://www.w3.org/2000/svg"
+  //                     onClick={() => router.back()}
+  //                 >
+  //                     <path
+  //                         fillRule="evenodd"
+  //                         d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+  //                     ></path>
+  //                 </svg>
+  //             </div>
+  //         </div>
+  //         <div
+  //             ref={loadingRef}
+  //             className="absolute z-[1] flex h-full w-full items-center justify-center"
+  //         >
+  //             <Loading/>
+  //         </div>
+  //         <iframe
+  //             width="100%"
+  //             height="100%"
+  //             allowFullScreen
+  //             ref={iframeRef}
+  //             style={{opacity: 0}}
+  //             referrerPolicy="no-referrer-when-downgrade"
+  //         />
+  //     </div>
+  // );
 }
 
 export default EmbedPlayer;

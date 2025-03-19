@@ -17,11 +17,12 @@ export default function Page({ params }: { params: { slug: string } }) {
       // mediaType={movieId?.includes('t') ? MediaType.ANIME : undefined}
       // url={`https://vidsrc.cc/v2/embed/anime/tmdb${id}/1/sub?autoPlay=false`}
       // url={`https://vidsrc.cc/v2/embed/tv/${id}`}
-      url={
-        option === '1'
-          ? `https://vidsrc.me/embed/tv/${id}`
-          : `https://vidsrc.cc/v2/embed/tv/${id}`
-      }
+      // url={
+      //   option === '1'
+      //     ? `https://vidsrc.me/embed/tv/${id}`
+      //     : `https://vidsrc.cc/v2/embed/tv/${id}`
+      // }
+      url={`https://player.videasy.net/tv/${id}`}
     />
   );
 }

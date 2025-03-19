@@ -13,11 +13,12 @@ export default function Page({ params }: { params: { slug: string } }) {
   return (
     <EmbedPlayer
       // url={`https://vidsrc.cc/v2/embed/movie/${id}`}
-      url={
-        option === '1'
-          ? `https://vidsrc.me/embed/movie/${id}`
-          : `https://vidsrc.cc/v2/embed/movie/${id}`
-      }
+      // url={
+      //   option === '1'
+      //     ? `https://vidsrc.me/embed/movie/${id}`
+      //     : `https://vidsrc.cc/v2/embed/movie/${id}`
+      // }
+      url={`https://player.videasy.net/movie/${id}`}
     />
   );
 }
